@@ -184,12 +184,26 @@ const approvedPayment = (req,res) => {
 
 }
 
+
+const onAddToCart = (req,res) => {
+    var data = req.body
+    var sql = 'insert into cart set ?'
+    db.query(sql, data,(err,result) => {
+        if(err) throw err 
+        res.send({
+            error : false,
+            message : "Add Cart Success"
+        })
+    })
+}
+
 module.exports = {
     onBayarClick,
     getAllTransaction,
     getTransactionDetailByIdTransaction,
     postPaymentConfirmation ,
     getTransactionFiltered,
-    approvedPayment
+    approvedPayment,
+    onAddToCart
 }
 
